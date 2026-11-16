@@ -1,0 +1,20 @@
+/* ===== TEMA OSCURO (por defecto) ===== */
+:root{
+  --fondo:#030705; --solid:#08110b; --card:rgba(12,20,15,.78); --card2:rgba(255,255,255,.05);
+  --txt:#f4fff8; --muted:#9db3a5; --g:#00ff66; --g2:#00c853; --gtxt:#00ff66; --btn-txt:#021208;
+  --border:rgba(255,255,255,.1); --glass:rgba(5,10,7,.82);
+  --sombra:0 20px 50px rgba(0,0,0,.55); --glow:0 0 26px rgba(0,255,102,.38);
+  --cesped1:rgba(0,255,102,.04); --cesped2:rgba(0,0,0,0);
+  --luz1:rgba(0,255,102,.24); --luz2:rgba(255,255,255,.10); --vineta:rgba(0,0,0,.78);
+  --pitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1050 680' fill='none' stroke='white' stroke-opacity='.14' stroke-width='3' preserveAspectRatio='xMidYMid slice'%3E%3Crect x='25' y='25' width='1000' height='630'/%3E%3Cpath d='M525 25V655'/%3E%3Ccircle cx='525' cy='340' r='91'/%3E%3Crect x='25' y='160' width='165' height='360'/%3E%3Crect x='860' y='160' width='165' height='360'/%3E%3Crect x='25' y='255' width='55' height='170'/%3E%3Crect x='970' y='255' width='55' height='170'/%3E%3C/svg%3E");
+}
+/* ===== TEMA CLARO ===== */
+body.modo-claro{
+  --fondo:#eafbef; --solid:#ffffff; --card:rgba(255,255,255,.86); --card2:rgba(0,90,35,.06);
+  --txt:#08210f; --muted:#456350; --g:#00b84a; --g2:#008a37; --gtxt:#007a30; --btn-txt:#ffffff;
+  --border:rgba(0,70,30,.16); --glass:rgba(255,255,255,.88);
+  --sombra:0 18px 40px rgba(0,90,40,.18); --glow:0 0 22px rgba(0,184,74,.32);
+  --cesped1:rgba(0,168,68,.09); --cesped2:rgba(255,255,255,.45);
+  --luz1:rgba(255,230,110,.55); --luz2:rgba(255,255,255,.9); --vineta:rgba(0,120,50,.14);
+  --pitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1050 680' fill='none' stroke='%2300a844' stroke-opacity='.3' stroke-width='3' preserveAspectRatio='xMidYMid slice'%3E%3Crect x='25' y='25' width='1000' height='630'/%3E%3Cpath d='M525 25V655'/%3E%3Ccircle cx='525' cy='340' r='91'/%3E%3Crect x='25' y='160' width='165' height='360'/%3E%3Crect x='860' y='160' width='165' height='360'/%3E%3Crect x='25' y='255' width='55' height='170'/%3E%3Crect x='970' y='255' width='55' height='170'/%3E%3C/svg%3E");
+}

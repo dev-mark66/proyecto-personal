@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#030705"><link rel="manifest" href="../manifest.json"><link rel="apple-touch-icon" href="../assets/img/logo.png"><meta name="mobile-web-app-capable" content="yes">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="stylesheet" href="../css/main.css"><title>Elite Sport | Tienda Oficial 2026</title></head>
+<body>
+<!-- HEADER WEB (laptops) -->
+<header class="web-header d-none d-md-flex justify-content-between align-items-center px-4">
+  <a href="#" data-vista="inicio" class="d-flex align-items-center gap-2 text-decoration-none"><img src="../assets/img/logo.png" alt="Elite Sport" class="logo-header" onerror="this.outerHTML='<span style=font-size:2rem>⚽</span>'"><h4 class="brand">ELITE <span class="t-g">SPORT</span></h4></a>
+  <nav class="d-flex gap-1">
+    <a href="#" class="nav-pill active" data-vista="inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="#" class="nav-pill" data-vista="catalogo"><i class="fa-solid fa-shirt"></i> Catálogo</a>
+    <a href="#" class="nav-pill" data-vista="favoritos"><i class="fa-solid fa-heart"></i> Favoritos</a>
+    <a href="#" class="nav-pill" data-vista="nosotros"><i class="fa-solid fa-circle-info"></i> Nosotros</a>
+    <a href="#" class="nav-pill" data-vista="contacto"><i class="fa-solid fa-envelope"></i> Contacto</a>
+  </nav>
+  <div class="d-flex gap-2 align-items-center">
+    <div class="search-box"><i class="fa-solid fa-search"></i><input type="search" class="form-control campo js-buscar" placeholder="Buscar camiseta..."></div>
+    <button class="btn btn-icon" data-vista="favoritos" title="Favoritos"><i class="fa-solid fa-heart"></i><span class="badge-count js-fav-count d-none">0</span></button>
+    <button class="btn btn-icon" onclick="toggleTema()" title="Cambiar tema"><i class="fa-solid fa-moon js-tema-icon"></i></button>
+    <button class="btn btn-neon px-3" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="fa-solid fa-user"></i> Mi cuenta</button>
+  </div>
+</header>
+<!-- HEADER MÓVIL / TABLET -->
+<header class="app-header d-flex d-md-none justify-content-between align-items-center px-3">
+  <div class="d-flex align-items-center gap-2"><img src="../assets/img/logo.png" alt="" class="logo-header-mobile" onerror="this.outerHTML='<span style=font-size:1.6rem>⚽</span>'"><h5 class="brand m-0" style="font-size:1.5rem">ELITE <span class="t-g">SPORT</span></h5></div>
+  <div class="d-flex gap-2"><button class="btn btn-icon" onclick="toggleTema()"><i class="fa-solid fa-moon js-tema-icon"></i></button><button class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#modalPerfil"><i class="fa-solid fa-user"></i></button></div>
+</header>
+
+<main class="contenido position-relative">
+ <!-- INICIO -->
+ <section id="vista-inicio" class="app-view active container">
+  <div id="heroCarrusel" class="mb-4"></div>
+  <div class="glass-card stat-strip row g-0 mb-5 reveal">
+    <div class="col-3 item"><div class="num" id="stProd">0</div><small class="t-m">Productos</small></div>
+    <div class="col-3 item"><div class="num" id="stLigas">0</div><small class="t-m">Ligas</small></div>
+    <div class="col-3 item"><div class="num" id="stOrig" data-suffix="%">0</div><small class="t-m">Calidad</small></div>
+    <div class="col-3 item"><div class="num" id="stEnv">0</div><small class="t-m">Depart. envío</small></div>
+  </div>
+  <h4 class="sec-title"><i class="fa-solid fa-layer-group"></i> Explora por liga</h4>
+  <div class="row g-3 mb-5" id="gridLigas"></div>
+  <h4 class="sec-title"><i class="fa-solid fa-fire"></i> Lo más nuevo</h4>
+  <div class="row g-3 mb-3" id="contenedorDestacados"></div>
+  <div class="text-center mb-5"><button class="btn btn-ghost px-4" data-vista="catalogo">Ver todo el catálogo <i class="fa-solid fa-arrow-right"></i></button></div>
+  <div class="row g-3 mb-5">
+    <div class="col-md-4 reveal"><div class="glass-card feature"><i class="fa-solid fa-medal"></i><h6 class="fw-bold">Calidad premium</h6><p class="t-m small mb-0">Camisetas con acabados de jugador y telas transpirables.</p></div></div>
+    <div class="col-md-4 reveal"><div class="glass-card feature"><i class="fa-solid fa-truck-fast"></i><h6 class="fw-bold">Envíos a todo el país</h6><p class="t-m small mb-0">Coordinamos tu entrega por WhatsApp de forma rápida.</p></div></div>
+    <div class="col-md-4 reveal"><div class="glass-card feature"><i class="fa-solid fa-shield-halved"></i><h6 class="fw-bold">Compra segura</h6><p class="t-m small mb-0">Atención directa, cambios de talla y garantía de satisfacción.</p></div></div>
+  </div>
+  <div class="cta-banner reveal"><h2 class="display-font">¿Listo para vestir tus colores?</h2><p class="mb-3">Escríbenos y reserva tu camiseta hoy mismo.</p><button class="btn btn-dark px-4" data-vista="contacto"><i class="fa-brands fa-whatsapp"></i> Hablar con un asesor</button></div>
+ </section>
+ <!-- CATÁLOGO -->
+ <section id="vista-catalogo" class="app-view container">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2"><h4 class="sec-title flex-grow-1 mb-0"><i class="fa-solid fa-shirt"></i> Catálogo</h4><small class="t-m" id="contadorRes"></small></div>
+  <div class="row g-2 my-2 align-items-center">
+    <div class="col-12 col-md-5 d-md-none"><input type="search" class="form-control campo js-buscar" placeholder="🔍 Buscar camiseta..."></div>
+    <div class="col-7 col-md-3 ms-md-auto"><select id="filtroOrden" class="form-select campo"><option value="nuevo">Recientes</option><option value="precio-asc">Menor precio</option><option value="precio-desc">Mayor precio</option></select></div>
+    <div class="col-5 col-md-auto"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="soloDisp"><label class="form-check-label small" for="soloDisp">Solo disponibles</label></div></div>
+  </div>
+  <div class="chips mb-3" id="chipsLigas"></div>
+  <div class="row g-3" id="contenedorCliente"></div>
+ </section>
+ <!-- FAVORITOS -->
+ <section id="vista-favoritos" class="app-view container"><h4 class="sec-title"><i class="fa-solid fa-heart" style="color:#ef233c"></i> Mis favoritos</h4><div class="row g-3" id="contenedorFavoritos"></div></section>
+ <!-- NOSOTROS -->
+ <section id="vista-nosotros" class="app-view container">
+  <div class="glass-card p-4 p-md-5 text-center mb-4"><i class="fa-solid fa-futbol display-3 t-g mb-3"></i><h2 class="display-font display-5">Sobre Elite Sport</h2>
+   <p class="t-m fs-5 mx-auto" style="max-width:700px">Nacimos de la pasión por el fútbol. Somos la tienda líder en camisetas de alta calidad de las mejores ligas del mundo, con atención personalizada y envíos a todo Bolivia.</p></div>
+  <div class="row g-3"><div class="col-md-4"><div class="glass-card feature"><i class="fa-solid fa-bullseye"></i><h6 class="fw-bold">Misión</h6><p class="t-m small">Que cada hincha lleve su camiseta con orgullo, a precio justo.</p></div></div>
+   <div class="col-md-4"><div class="glass-card feature"><i class="fa-solid fa-eye"></i><h6 class="fw-bold">Visión</h6><p class="t-m small">Ser la referencia deportiva online de Bolivia.</p></div></div>
+   <div class="col-md-4"><div class="glass-card feature"><i class="fa-solid fa-clock"></i><h6 class="fw-bold">Horarios</h6><p class="t-m small">Lunes a sábado, 9:00 a 20:00. WhatsApp 24/7.</p></div></div></div>
+ </section>
+ <!-- CONTACTO -->
+ <section id="vista-contacto" class="app-view container">
+  <h4 class="sec-title"><i class="fa-solid fa-envelope"></i> Contáctanos</h4>
+  <div class="row g-4"><div class="col-lg-7"><form id="formContacto" class="glass-card p-4" novalidate>
+    <div class="mb-3"><label class="form-label">Nombre</label><input id="cNombre" class="form-control campo" placeholder="Tu nombre"></div>
+    <div class="mb-3"><label class="form-label">Celular</label><input id="cTel" class="form-control campo" inputmode="numeric" placeholder="71234567"></div>
+    <div class="mb-3"><label class="form-label">Mensaje</label><textarea id="cMsg" rows="4" class="form-control campo" placeholder="Cuéntanos qué camiseta buscas..."></textarea></div>
+    <button class="btn btn-neon w-100 py-3"><i class="fa-brands fa-whatsapp me-2"></i>Enviar por WhatsApp</button></form></div>
+   <div class="col-lg-5"><div class="glass-card p-4 h-100"><h5 class="fw-bold mb-3">Información</h5>
+    <p><i class="fa-solid fa-location-dot t-g me-2"></i>La Paz, Bolivia</p><p><i class="fa-solid fa-phone t-g me-2"></i>+591 70000000</p><p><i class="fa-solid fa-envelope t-g me-2"></i>contacto@elitesport.com</p>
+    <a href="https://wa.me/59170000000" target="_blank" rel="noopener" class="btn btn-neon w-100 mt-2"><i class="fa-brands fa-whatsapp me-2"></i>WhatsApp directo</a></div></div></div>
+ </section>
+</main>
+
+<footer class="pie d-none d-md-block text-center py-3 small t-m">© 2026 Elite Sport · Hecho con ⚽ y pasión</footer>
+
+<nav class="bottom-nav d-md-none">
+  <a href="#" class="active" data-vista="inicio"><i class="fa-solid fa-house"></i>Inicio</a>
+  <a href="#" data-vista="catalogo"><i class="fa-solid fa-shirt"></i>Catálogo</a>
+  <a href="#" data-vista="favoritos"><i class="fa-solid fa-heart"></i>Favoritos<span class="badge-count js-fav-count d-none">0</span></a>
+  <a href="#" data-vista="nosotros"><i class="fa-solid fa-circle-info"></i>Nosotros</a>
+  <a href="#" data-vista="contacto"><i class="fa-solid fa-envelope"></i>Contacto</a>
+</nav>
+
+<!-- PERFIL -->
+<div class="modal fade" id="modalPerfil" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content overflow-hidden">
+  <div class="p-4 text-center" style="border-bottom:1px solid var(--border)"><div class="position-relative d-inline-block mb-3">
+    <img id="perfilFoto" src="https://ui-avatars.com/api/?name=Alex&background=00ff66&color=000&bold=true&size=200" class="rounded-circle border border-3 border-success" width="110" height="110" style="object-fit:cover" alt="">
+    <label for="subirFoto" class="position-absolute bottom-0 end-0 rounded-circle p-2" style="cursor:pointer;background:var(--g)"><i class="fa-solid fa-camera" style="color:var(--btn-txt)"></i><input type="file" id="subirFoto" class="d-none" accept="image/*" onchange="cambiarFotoPerfil(event)"></label></div>
+    <h4 class="fw-bold m-0">Alex Cliente</h4><p class="t-g small mb-0">alex@elitesport.com</p></div>
+  <div class="p-4">
+    <button class="btn btn-ghost w-100 mb-2 text-start py-3" data-vista="favoritos" onclick="ocultarModal('modalPerfil')"><i class="fa-solid fa-heart text-danger me-3"></i>Mis favoritos</button>
+    <button class="btn btn-ghost w-100 mb-2 text-start py-3" onclick="toggleTema()"><i class="fa-solid fa-moon js-tema-icon me-3 t-g"></i>Cambiar tema</button>
+    <button class="btn btn-ghost w-100 mb-2 text-start py-3 js-instalar d-none" onclick="instalarApp()"><i class="fa-solid fa-download t-g me-3"></i>Instalar app</button>
+    <a href="https://wa.me/59170000000" target="_blank" rel="noopener" class="btn btn-ghost w-100 mb-3 text-start py-3"><i class="fa-brands fa-whatsapp t-g me-3"></i>Contactar soporte</a>
+    <button class="btn btn-danger w-100 py-3" onclick="logout()"><i class="fa-solid fa-power-off me-2"></i>Cerrar sesión</button></div></div></div></div>
+
+<!-- ZOOM / DETALLE -->
+<div id="modalZoom" class="zm"><div class="zm-box">
+  <button class="zm-close" onclick="cerrarZoom()" aria-label="Cerrar">&times;</button>
+  <div class="zm-img" id="zmWrap"><img id="zoomImg" alt=""><div class="zm-lens" id="zmLens"></div><span class="zm-hint" id="zmHint"></span></div>
+  <div class="zm-info"><div class="zm-pane" id="zmPane"></div>
+    <div class="d-flex align-items-center gap-2 mb-2 fw-bold small text-uppercase t-g" id="zoomLiga"></div>
+    <h2 id="zoomTitulo" class="display-font display-6 mb-1"></h2><p class="t-m small mb-2" id="zoomTemporada"></p>
+    <h3 class="p-precio fs-1 mb-1" id="zoomPrecio"></h3><div class="small mb-3" id="zoomStock"></div>
+    <p class="t-m" id="zoomDesc"></p>
+    <span class="t-m small d-block mb-2">Elige tu talla:</span><div class="mb-4" id="zoomTallas"></div>
+    <div class="mt-auto d-grid gap-2"><button class="btn btn-neon btn-lg" id="btnComprar" onclick="contactarWhatsApp()"><i class="fa-brands fa-whatsapp me-2"></i>Comprar por WhatsApp</button>
+      <div class="d-flex gap-2"><button class="btn btn-outline-danger w-100" id="btnFavorito"></button><button class="btn btn-ghost" onclick="compartir()" aria-label="Compartir"><i class="fa-solid fa-share-nodes"></i></button></div></div>
+  </div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="../js/views/catalogo.js"></script>
+</body></html>

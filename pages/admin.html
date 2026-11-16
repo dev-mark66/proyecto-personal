@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#030705"><link rel="manifest" href="../manifest.json"><link rel="apple-touch-icon" href="../assets/img/logo.png"><meta name="mobile-web-app-capable" content="yes">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="stylesheet" href="../css/main.css"><title>Admin | Elite Sport</title></head>
+<body>
+<header class="web-header d-flex justify-content-between align-items-center px-3 px-md-4" style="height:70px">
+  <div class="d-flex align-items-center gap-3"><button class="btn btn-icon d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#menuLateral"><i class="fa-solid fa-bars"></i></button>
+    <img src="../assets/img/logo.png" height="42" alt="" onerror="this.outerHTML='<span style=font-size:1.8rem>⚽</span>'"><h4 class="brand m-0 d-none d-sm-block" style="font-size:1.6rem">PANEL <span class="t-g">ADMIN</span></h4></div>
+  <div class="d-flex gap-2"><button class="btn btn-icon" onclick="toggleTema()"><i class="fa-solid fa-moon js-tema-icon"></i></button>
+    <a href="cliente.html" class="btn btn-ghost px-3"><i class="fa-solid fa-eye"></i><span class="d-none d-sm-inline"> Ver tienda</span></a>
+    <button class="btn btn-outline-danger px-3" onclick="logout()"><i class="fa-solid fa-power-off"></i></button></div>
+</header>
+<!-- Menú: fijo en laptop, offcanvas en móvil -->
+<aside class="side d-none d-lg-flex" id="sideDesk"></aside>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral"><div class="offcanvas-header"><h5 class="brand">ELITE <span class="t-g">SPORT</span></h5><button class="btn-close" data-bs-dismiss="offcanvas"></button></div><div class="offcanvas-body" id="sideMov"></div></div>
+<template id="tplMenu"><a href="#" class="menu-item active" data-vista="inventario"><i class="fa-solid fa-box"></i>Inventario</a><a href="#" class="menu-item" data-vista="estadisticas"><i class="fa-solid fa-chart-pie"></i>Estadísticas</a><a href="#" class="menu-item" data-vista="config"><i class="fa-solid fa-gear"></i>Configuración</a></template>
+
+<main class="contenido admin-main"><div class="container-fluid px-3 px-md-4">
+ <section id="vista-inventario" class="app-view active"><div class="row g-4">
+  <div class="col-xl-4"><form id="formProducto" class="glass-card p-4" style="position:sticky;top:90px" novalidate>
+    <h5 class="t-g fw-bold mb-4" id="tituloForm"><i class="fa-solid fa-plus-circle"></i> Nuevo producto</h5>
+    <div class="mb-3"><label class="form-label">Nombre del producto</label><input id="prodTitulo" class="form-control campo" placeholder="Ej. Camiseta Real Madrid"></div>
+    <div class="row g-2 mb-3"><div class="col-6"><label class="form-label">Precio (Bs)</label><input type="number" id="prodPrecio" class="form-control campo" placeholder="350"></div><div class="col-6"><label class="form-label">Stock</label><input type="number" id="prodStock" class="form-control campo" placeholder="15"></div></div>
+    <div class="row g-2 mb-3"><div class="col-6"><label class="form-label">Liga</label><select id="prodLiga" class="form-select campo"></select></div>
+      <div class="col-6"><label class="form-label">Temporada</label><select id="prodTemporada" class="form-select campo"><option>2024/25</option><option selected>2025/26</option><option>2026/27</option><option>Retro</option></select></div></div>
+    <div class="mb-3"><label class="form-label d-block">Tallas disponibles</label><div class="d-flex gap-2 flex-wrap">
+      <label class="talla-btn"><input type="checkbox" value="S" class="talla-check d-none"><span>S</span></label><label class="talla-btn"><input type="checkbox" value="M" class="talla-check d-none"><span>M</span></label><label class="talla-btn"><input type="checkbox" value="L" class="talla-check d-none"><span>L</span></label><label class="talla-btn"><input type="checkbox" value="XL" class="talla-check d-none"><span>XL</span></label></div></div>
+    <div class="mb-3"><label class="form-label">URL de imagen (Dropbox / https)</label><input id="prodImagen" class="form-control campo mb-2" placeholder="https://www.dropbox.com/..."><div class="prev-box" id="prodPreview">Vista previa</div></div>
+    <div class="mb-4"><label class="form-label">Descripción</label><textarea id="prodDesc" class="form-control campo" rows="2" placeholder="Detalles de la camiseta..."></textarea></div>
+    <button class="btn btn-neon w-100 py-3" id="btnGuardar">GUARDAR PRODUCTO</button><button type="button" class="btn btn-ghost w-100 mt-2 d-none" id="btnCancelar">Cancelar edición</button></form></div>
+  <div class="col-xl-8"><div class="d-flex flex-wrap gap-2 align-items-center mb-3"><h4 class="sec-title flex-grow-1 mb-0">Inventario <small class="t-m fs-6" id="totalInv"></small></h4>
+    <input id="adminBuscar" class="form-control campo w-auto" placeholder="🔍 Buscar..."><select id="adminLiga" class="form-select campo w-auto"></select></div><div class="row" id="contenedorAdmin"></div></div></div></section>
+
+ <section id="vista-estadisticas" class="app-view"><h4 class="sec-title"><i class="fa-solid fa-chart-pie"></i> Estadísticas</h4>
+  <div class="row g-3 mb-4">
+   <div class="col-6 col-xl-3"><div class="glass-card stat-card"><div class="ico"><i class="fa-solid fa-shirt"></i></div><div><div class="v" id="sProd">0</div><small class="t-m">Productos</small></div></div></div>
+   <div class="col-6 col-xl-3"><div class="glass-card stat-card"><div class="ico"><i class="fa-solid fa-cubes"></i></div><div><div class="v" id="sUni">0</div><small class="t-m">Unidades</small></div></div></div>
+   <div class="col-6 col-xl-3"><div class="glass-card stat-card"><div class="ico"><i class="fa-solid fa-coins"></i></div><div><div class="v" id="sVal">0</div><small class="t-m">Valor inventario (Bs)</small></div></div></div>
+   <div class="col-6 col-xl-3"><div class="glass-card stat-card"><div class="ico"><i class="fa-solid fa-triangle-exclamation"></i></div><div><div class="v" id="sBajo">0</div><small class="t-m">Stock bajo</small></div></div></div></div>
+  <div class="row g-3"><div class="col-lg-7"><div class="glass-card p-4"><h6 class="fw-bold mb-3">Productos por liga</h6><div id="barrasLigas"></div></div></div>
+   <div class="col-lg-5"><div class="glass-card p-4"><h6 class="fw-bold mb-3">⚠️ Stock bajo (≤ 5)</h6><ul class="list-unstyled mb-0" id="listaBajo"></ul></div></div></div></section>
+
+ <section id="vista-config" class="app-view"><h4 class="sec-title"><i class="fa-solid fa-gear"></i> Configuración</h4>
+  <div class="row g-4"><div class="col-lg-6"><form id="formCarrusel" class="glass-card p-4" novalidate><h6 class="fw-bold mb-3">🎠 Agregar slide al carrusel</h6>
+    <div class="mb-3"><label class="form-label">URL de imagen (Dropbox / https)</label><input id="cUrl" class="form-control campo"></div>
+    <div class="row g-2 mb-3"><div class="col-8"><label class="form-label">Título</label><input id="cTitulo" class="form-control campo"></div><div class="col-4"><label class="form-label">Etiqueta</label><input id="cBadge" class="form-control campo" placeholder="OFERTA"></div></div>
+    <div class="mb-3"><label class="form-label">Texto</label><input id="cTexto" class="form-control campo"></div><button class="btn btn-neon w-100">Agregar slide</button></form></div>
+   <div class="col-lg-6"><div class="glass-card p-4 mb-3"><h6 class="fw-bold mb-2">Slides actuales</h6><div id="listaCarrusel"></div></div>
+    <div class="glass-card p-4 d-grid gap-2"><button class="btn btn-ghost" id="btnExportar"><i class="fa-solid fa-download me-2"></i>Exportar inventario (JSON)</button><button class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-left me-2"></i>Restablecer datos demo</button></div></div></div></section>
+</div></main>
+
+<div class="modal fade" id="modalImagenAdmin" tabindex="-1"><div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content overflow-hidden"><div class="row g-0">
+  <div class="col-md-6 bg-black"><img id="imgAdminGrande" class="w-100 h-100" style="object-fit:cover;max-height:420px" alt=""></div>
+  <div class="col-md-6 p-4"><button class="btn-close float-end" data-bs-dismiss="modal"></button><h3 class="display-font t-g" id="modalTitulo"></h3><h4 id="modalPrecio"></h4><p class="t-m" id="modalDesc"></p>
+   <span class="t-m small d-block">Liga</span><div class="mb-3" id="modalLiga"></div><span class="t-m small d-block">Tallas</span><div id="modalTallas"></div></div></div></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>["sideDesk","sideMov"].forEach(id=>document.getElementById(id).appendChild(document.getElementById("tplMenu").content.cloneNode(true)));</script>
+<script type="module" src="../js/views/admin.js"></script>
+</body></html>

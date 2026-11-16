@@ -1,0 +1,8 @@
+[
+ {"id":1,"titulo":"Camiseta Real Madrid Local","precio":380,"stock":12,"liga":"laliga","temporada":"2025/26","tallas":["S","M","L","XL"],"imagen":"","descripcion":"Camiseta blanca titular con tecnología de secado rápido."},
+ {"id":2,"titulo":"Camiseta FC Barcelona Local","precio":380,"stock":8,"liga":"laliga","temporada":"2025/26","tallas":["M","L","XL"],"imagen":"","descripcion":"Los clásicos colores blaugrana, corte de jugador."},
+ {"id":3,"titulo":"Camiseta Manchester City","precio":360,"stock":5,"liga":"premier","temporada":"2025/26","tallas":["S","M","L"],"imagen":"","descripcion":"Celeste campeón, tela ligera y transpirable."},
+ {"id":4,"titulo":"Camiseta Liverpool Local","precio":370,"stock":3,"liga":"premier","temporada":"2024/25","tallas":["M","L"],"imagen":"","descripcion":"Rojo intenso con detalles dorados."},
+ {"id":5,"titulo":"Camiseta Juventus Local","precio":350,"stock":10,"liga":"seriea","temporada":"2025/26","tallas":["S","M","L","XL"],"imagen":"","descripcion":"Rayas clásicas blanquinegras."},
+ {"id":6,"titulo":"Camiseta Argentina Retro 86","precio":420,"stock":0,"liga":"argentina","temporada":"Retro","tallas":["M","L"],"imagen":"","descripcion":"Edición retro de colección, corte clásico."}
+]

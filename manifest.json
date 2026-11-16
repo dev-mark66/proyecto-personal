@@ -1,0 +1,1 @@
+{"name":"Elite Sport","short_name":"EliteSport","description":"Tienda oficial de camisetas de fútbol","start_url":"./index.html","scope":"./","display":"standalone","orientation":"portrait-primary","background_color":"#030705","theme_color":"#00ff66","lang":"es","icons":[{"src":"assets/img/logo.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}
